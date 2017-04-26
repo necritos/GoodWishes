@@ -1,0 +1,47 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    ext.support_version = '25.1.0'
+    ext.kotlin_version = '1.1.1'
+    ext.anko_version = '0.9'
+    ext.constraint_layout_version = '1.0.2'
+    ext.command_plugin = '1.5.0'
+    ext.realm_version = '2.3.0'
+    ext.apt_version = '1.8'
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.3.1'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+
+        classpath "com.neenbedankt.gradle.plugins:android-apt:$apt_version"
+        classpath "com.novoda:gradle-android-command-plugin:$command_plugin"
+        classpath "io.realm:realm-gradle-plugin:$realm_version"
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+configurations.all {
+    resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+}
+allprojects {
+    repositories {
+        jcenter()
+        maven { url "https://jitpack.io" }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+repositories {
+    mavenCentral()
+}
+
+ext {
+    // Sdk and tools
+    minSdkVersion = 16
+    targetSdkVersion = 25
+    compileSdkVersion = 25
+}
